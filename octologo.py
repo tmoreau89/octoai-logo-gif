@@ -8,7 +8,7 @@ import tempfile
 
 
 api = webuiapi.WebUIApi(
-    host="a1111-webui-api-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
+    host="octoai-logo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
 )
 
 def generate_gif(upload, meal):
@@ -91,21 +91,23 @@ def generate_gif(upload, meal):
         frames.append(res.images[0])
 
     # Save the gif and display it
-    frame_one = frames[0]
     with tempfile.NamedTemporaryFile() as tmp:
+        frame_one = frames[0]
         frame_one.save(tmp.name, format="GIF", append_images=frames,
                 save_all=True, duration=200, loop=0)
 
         # Display GIF
-        file_ = open(tmp.name, "rb")
-        contents = file_.read()
-        data_url = b64encode(contents).decode("utf-8")
-        file_.close()
+        with open(tmp.name, "rb") as gif_f:
+            contents = gif_f.read()
+            data_url = b64encode(contents).decode("utf-8")
 
-        st.markdown(
-            f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-            unsafe_allow_html=True,
-        )
+            st.markdown(
+                f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+                unsafe_allow_html=True,
+            )
+
+            # st.markdown("\n")
+            # st.download_button("Download your gif", gif_f, file_name="foody_logo.gif")
 
 st.set_page_config(layout="wide", page_title="Logo Chef")
 
@@ -117,7 +119,6 @@ meal = st.radio(
     )
 
 my_upload = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"])
-
 
 if my_upload is not None:
     generate_gif(my_upload, meal)
