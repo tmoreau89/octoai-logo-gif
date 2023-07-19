@@ -28,7 +28,7 @@ def generate_gif(upload, meal):
             "yoghurt with berries",
             "smoothie",
             "waffles",
-            "iced coffee",
+            "cheese omelette",
             "granola with milk",
             "scrambled eggs with bacon",
             "cookies",
