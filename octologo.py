@@ -16,7 +16,7 @@ def generate_gif(upload, meal):
     input_img = Image.open(upload)
     seed = random.randint(0,1000)
     frames = []
-    progress_text = "GIF is being cooked... Please wait."
+    progress_text = "GIF is in the oven..."
     my_bar = st.progress(0, text=progress_text)
     percent_complete = 0
 
