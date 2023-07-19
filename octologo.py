@@ -65,9 +65,9 @@ def generate_gif(upload, meal):
         unit1 = webuiapi.ControlNetUnit(
             input_image=input_img,
             module="none",
-            weight=1.2,
+            weight=1.25,
             guidance_start=0,
-            guidance_end=0.90,
+            guidance_end=1,
             model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
         )
         res = api.txt2img(
