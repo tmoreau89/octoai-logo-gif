@@ -21,7 +21,6 @@ def generate_gif(upload, food_type, invert_logo, strength):
         model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
     )
     res = api.txt2img(
-        # prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, dslr, soft lighting, high quality, film grain, Fujifilm XT",
         prompt="perfume bottle, no humans, gradient background, simple background, {}, 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 <lora:Perfume_Bottle_v001:1>".format(food_type),
         negative_prompt="(blur, haze, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime, mutated hands and fingers:1.4), (deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, disconnected limbs, mutation, mutated, ugly, disgusting, amputation,watermark,",
         seed=seed,
@@ -44,7 +43,7 @@ st.set_page_config(layout="wide", page_title="Logo Chef (perfume version)")
 
 st.write("## Logo Chef (perfume version) - Powered by OctoAI")
 
-food_type = st.text_input("Describe your ideal perfume bottle!", "pink flower")
+food_type = st.text_input("Spice up your ideal perfume bottle by adding key words!", "pink flower")
 
 invert_logo = st.checkbox('Invert Logo (turns black on white to white on black)')
 
