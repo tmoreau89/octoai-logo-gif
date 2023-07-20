@@ -38,7 +38,7 @@ def generate_gif(upload, food_type, invert_logo, strength):
     col2.image(res.images[1])
     col3.image(res.images[2])
 
-st.set_page_config(layout="wide", page_title="Logo Chef")
+st.set_page_config(layout="wide", page_title="Logo Chef (stills version)")
 
 st.write("## Logo Chef (stills version) - Powered by OctoAI")
 
