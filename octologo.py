@@ -38,7 +38,7 @@ def generate_gif(upload, meal):
             "margherita pizza",
             "healthy wrap",
             "brie and fruit",
-            "sandwitch",
+            "sandwich",
             "potato chips",
             "quiche",
             "quinoa salad",
