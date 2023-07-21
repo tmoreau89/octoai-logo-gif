@@ -17,7 +17,7 @@ def generate_gif(upload, food_type, invert_logo, strength):
         module="invert" if invert_logo else "none",
         weight=strength,
         guidance_start=0,
-        guidance_end=1,
+        guidance_end=0.95,
         model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
     )
     res = api.txt2img(
@@ -30,7 +30,7 @@ def generate_gif(upload, food_type, invert_logo, strength):
         n_iter=3,
         sampler_name="Euler a",
         controlnet_units=[unit1],
-        override_settings={"sd_model_checkpoint": "v1-5-pruned.safetensors"},
+        override_settings={"sd_model_checkpoint": "realistic.safetensors"},
     )
 
     col1, col2, col3 = st.columns(3)

@@ -67,7 +67,7 @@ def generate_gif(upload, meal):
             module="none",
             weight=1.25,
             guidance_start=0,
-            guidance_end=1,
+            guidance_end=0.95,
             model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
         )
         res = api.txt2img(
@@ -80,7 +80,7 @@ def generate_gif(upload, meal):
             n_iter=1,
             sampler_name="Euler a",
             controlnet_units=[unit1],
-            override_settings={"sd_model_checkpoint": "v1-5-pruned.safetensors"},
+            override_settings={"sd_model_checkpoint": "realistic.safetensors"},
         )
         # Uncomment if you want to see the photos frame by frame
         # st.image(res.images[0])
