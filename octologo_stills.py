@@ -5,7 +5,7 @@ import random
 
 
 api = webuiapi.WebUIApi(
-    host="octoai-logo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
+    host="octoai-qr-logo-demo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
 )
 
 def generate_gif(upload, food_type, invert_logo, strength):
