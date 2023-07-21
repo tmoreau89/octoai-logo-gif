@@ -112,9 +112,9 @@ def generate_gif(upload, meal):
             # st.markdown("\n")
             # st.download_button("Download your gif", gif_f, file_name="foody_logo.gif")
 
-st.set_page_config(layout="wide", page_title="Logo Chef")
+st.set_page_config(layout="wide", page_title="Foody Logos")
 
-st.write("## Logo Chef - Powered by OctoAI")
+st.write("## Foody Logos - Powered by OctoAI")
 
 st.write("Try the stills version [here](https://foodylogos-stills.streamlit.app/)")
 

@@ -36,9 +36,9 @@ def generate_gif(upload, food_type, invert_logo, strength):
 
     st.image(res.images[0])
 
-st.set_page_config(layout="wide", page_title="Logo Chef (stills version)")
+st.set_page_config(layout="wide", page_title="Foody Logos (stills version)")
 
-st.write("## Logo Chef (stills version) - Powered by OctoAI")
+st.write("## Foody Logos (stills version) - Powered by OctoAI")
 
 st.write("Try the GIF version [here](https://foodylogos.streamlit.app/)")
 
