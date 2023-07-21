@@ -8,7 +8,7 @@ import tempfile
 
 
 api = webuiapi.WebUIApi(
-    host="octoai-logo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
+    host="octoai-qr-logo-demo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
 )
 
 def generate_gif(upload, meal):
@@ -72,9 +72,10 @@ def generate_gif(upload, meal):
         )
         res = api.txt2img(
             prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, dslr, soft lighting, high quality, film grain, Fujifilm XT",
+            negative_prompt="nsfw, nudity",
             seed=seed,
             cfg_scale=7,
-            steps=30,
+            steps=25,
             width=512,
             height=512,
             n_iter=1,
