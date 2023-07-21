@@ -50,7 +50,7 @@ def generate_gif(upload, meal):
         meal_list = [
             "cheese platter",
             "beer",
-            "roasted fish"
+            "roasted fish",
             "sashimi",
             "spaghetti with meatballs",
             "pho soup",
