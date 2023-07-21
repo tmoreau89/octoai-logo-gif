@@ -61,6 +61,7 @@ def generate_gif(upload, meal):
             "chocolate desert"
         ]
 
+    placeholder = st.empty()
     for food_type in meal_list:
         unit1 = webuiapi.ControlNetUnit(
             input_image=input_img,
@@ -71,7 +72,7 @@ def generate_gif(upload, meal):
             model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
         )
         res = api.txt2img(
-            prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, dslr, soft lighting, high quality, film grain, Fujifilm XT",
+            prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, soft lighting, high quality, film grain, Fujifilm XT",
             negative_prompt="nsfw, nudity",
             seed=seed,
             cfg_scale=7,
@@ -84,12 +85,13 @@ def generate_gif(upload, meal):
             override_settings={"sd_model_checkpoint": "realistic.safetensors"},
         )
         # Uncomment if you want to see the photos frame by frame
-        # st.image(res.images[0])
         percent_complete += 10
         if percent_complete == 100:
             progress_text = "GIF is ready!"
         my_bar.progress(percent_complete, text=progress_text)
         frames.append(res.images[0])
+        placeholder.empty()
+        placeholder.image(res.images[0])
 
     # Save the gif and display it
     with tempfile.NamedTemporaryFile() as tmp:
@@ -102,17 +104,19 @@ def generate_gif(upload, meal):
             contents = gif_f.read()
             data_url = b64encode(contents).decode("utf-8")
 
+            placeholder.empty()
             st.markdown(
                 f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
                 unsafe_allow_html=True,
             )
-
             # st.markdown("\n")
             # st.download_button("Download your gif", gif_f, file_name="foody_logo.gif")
 
 st.set_page_config(layout="wide", page_title="Logo Chef")
 
 st.write("## Logo Chef - Powered by OctoAI")
+
+st.write("Try the stills version [here](https://foodylogos-stills.streamlit.app/)")
 
 meal = st.radio(
         "Meal Choice",
