@@ -17,12 +17,12 @@ def generate_gif(upload, food_type, invert_logo, strength):
         module="invert" if invert_logo else "none",
         weight=strength,
         guidance_start=0,
-        guidance_end=0.95,
+        guidance_end=1,
         model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
     )
     res = api.txt2img(
         prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, soft lighting, high quality, film grain, Fujifilm XT",
-        negative_prompt="nsfw, nudity",
+        negative_prompt="nsfw, nudity, human, person",
         seed=seed,
         cfg_scale=7,
         steps=30,
@@ -31,7 +31,7 @@ def generate_gif(upload, food_type, invert_logo, strength):
         n_iter=1,
         sampler_name="Euler a",
         controlnet_units=[unit1],
-        override_settings={"sd_model_checkpoint": "realistic.safetensors"},
+        override_settings={"sd_model_checkpoint": "realistic-v40.safetensors"},
     )
 
     st.image(res.images[0])

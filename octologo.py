@@ -60,29 +60,43 @@ def generate_gif(upload, meal):
             "cheese burger",
             "chocolate desert"
         ]
+    elif meal == "birthday special":
+        meal_list = [
+            "birthday cake, candles",
+            "rainbow colored cupcakes",
+            "colorful candy and gum",
+            "pink sprinkled doughnuts",
+            "fruit punch",
+            "colorful macarons"
+            "balloons",
+            "rainbow colored fruit skewers",
+            "purple milkshake",
+            "ice cream with sprinkles",
+            "chocolate brownies"
+        ]
 
     placeholder = st.empty()
     for food_type in meal_list:
         unit1 = webuiapi.ControlNetUnit(
             input_image=input_img,
             module="none",
-            weight=1.25,
+            weight=1.5,
             guidance_start=0,
-            guidance_end=0.95,
+            guidance_end=1,
             model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
         )
         res = api.txt2img(
             prompt=food_type+", RAW photo, <lora:foodphoto:0.8> foodphoto, soft lighting, high quality, film grain, Fujifilm XT",
-            negative_prompt="nsfw, nudity",
+            negative_prompt="nsfw, nudity, human, person",
             seed=seed,
             cfg_scale=7,
-            steps=25,
+            steps=30,
             width=512,
             height=512,
             n_iter=1,
             sampler_name="Euler a",
             controlnet_units=[unit1],
-            override_settings={"sd_model_checkpoint": "realistic.safetensors"},
+            override_settings={"sd_model_checkpoint": "realistic-v40.safetensors"},
         )
         # Uncomment if you want to see the photos frame by frame
         percent_complete += 10
@@ -120,7 +134,7 @@ st.write("Try the stills version [here](https://foodylogos-stills.streamlit.app/
 
 meal = st.radio(
         "Meal Choice",
-        ["breakfast", "lunch", "dinner"]
+        ["breakfast", "lunch", "dinner", "birthday special"]
     )
 
 my_upload = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"])
