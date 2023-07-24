@@ -11,7 +11,7 @@ api = webuiapi.WebUIApi(
     host="octoai-qr-logo-demo-4jkxk521l3v1.octoai.cloud", port=443, use_https=True
 )
 
-def generate_gif(upload, invert_logo, meal):
+def generate_gif(upload, invert_logo, strength, meal):
 
     input_img = Image.open(upload)
     seed = random.randint(0,1000)
@@ -64,7 +64,7 @@ def generate_gif(upload, invert_logo, meal):
         meal_list = [
             "birthday cake, candles",
             "rainbow colored cupcakes",
-            "colorful candy and gum",
+            "colorful candy, gummies, bubblegum",
             "pink sprinkled doughnuts",
             "fruit punch",
             "colorful macarons"
@@ -80,7 +80,7 @@ def generate_gif(upload, invert_logo, meal):
         unit1 = webuiapi.ControlNetUnit(
             input_image=input_img,
             module="invert" if invert_logo else "none",
-            weight=1.5,
+            weight=strength,
             guidance_start=0,
             guidance_end=1,
             model="controlnetQRPatternQR_v2Sd15 [2d8d5750]"
@@ -139,7 +139,11 @@ meal = st.radio(
 
 invert_logo = st.checkbox('Invert Logo (turns black on white to white on black)')
 
+strength = st.slider(
+    'Select the logo contour strength',
+    0.0, 2.0, 1.5)
+
 my_upload = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"])
 
 if my_upload is not None:
-    generate_gif(my_upload, invert_logo, meal)
+    generate_gif(my_upload, invert_logo, strength, meal)
